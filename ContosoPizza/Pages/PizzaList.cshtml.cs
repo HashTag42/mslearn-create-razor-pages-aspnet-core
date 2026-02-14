@@ -45,5 +45,21 @@ namespace ContosoPizza.Pages
             // the page with the updated list of pizzas.
             return RedirectToAction("Get");
         }
+
+        // The OnPostDelete method is called when the user clicks the Delete button for a pizza.
+        // The page knows to use this method because the asp-page-handler attribute on the Delete button in
+        // Pages\PizzaList.cshtml is set to Delete.
+        // The id parameter is used to identify the pizza to delete.
+        // The id parameter is bound to the id route value in the URL. This is accomplished with the asp-route-id
+        // attribute on the Delete button in Pages\PizzaList.cshtml.
+        public IActionResult OnPostDelete(int id)
+        {
+            // The DeletePizza method is called on the _service object to delete the pizza.
+            _service.DeletePizza(id);
+
+            // The RedirectToAction method is used to redirect the user to the Get page handler, which will re-render
+            // the page with the updated list of pizzas.
+            return RedirectToAction("Get");
+        }
     }
 }
